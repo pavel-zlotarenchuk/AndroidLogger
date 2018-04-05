@@ -182,6 +182,7 @@ public class AndroidLogger {
         AndroidLogger.clearOnFilling = clearOnFilling;
     }
 
+    //setting up directory
     private static void configDir() {
         PATH = Environment.getExternalStorageDirectory().getPath() + "/" + appFolderName + "/";
         directory = new File(PATH);
