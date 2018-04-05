@@ -75,6 +75,7 @@ public class AndroidLogger {
         return result;
     }
 
+    //log errors
     public static int e(String tag, String msg, String error) {
 
         int result = 0;
