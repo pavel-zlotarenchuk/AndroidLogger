@@ -191,6 +191,7 @@ public class AndroidLogger {
         }
     }
 
+    //sending log by email
     public static void sendLog(Context context, String emails[], String subject) {
         configDir();
         File file = null;
