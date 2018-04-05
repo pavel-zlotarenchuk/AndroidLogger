@@ -42,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 count++;
-//                for (int i = 0; i < 2; i++) {
-//                    Logger.d(TAG, "clicked " + String.valueOf(count) + " times.");
-//                }
-                //Logger.e(TAG, "Error occured", "generated error");
                 AndroidLogger.d(TAG, "sssssssss");
             }
         });
