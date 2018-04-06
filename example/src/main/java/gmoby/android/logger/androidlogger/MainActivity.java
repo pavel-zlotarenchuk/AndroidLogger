@@ -14,7 +14,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import gmoby.android.logger.logger.AndroidLogger;
+import gmoby.android.logger.AndroidLogger;
 
 public class MainActivity extends AppCompatActivity {
     String[] permissions = new String[]{

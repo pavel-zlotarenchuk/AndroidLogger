@@ -1,4 +1,4 @@
-package gmoby.android.logger.logger;
+package gmoby.android.logger;
 
 import android.content.Context;
 import android.content.Intent;
