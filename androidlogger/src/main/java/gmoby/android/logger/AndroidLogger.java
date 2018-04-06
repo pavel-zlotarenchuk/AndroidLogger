@@ -2,7 +2,9 @@ package gmoby.android.logger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
@@ -26,7 +28,7 @@ import java.util.zip.ZipOutputStream;
 
 public class AndroidLogger {
 
-    private static final int BUFFER = 1024;
+    private static final int BUFFER_SIZE = 1024;
 
     private static boolean isZipable = true;
     private static boolean clearOnFilling = true;
@@ -35,7 +37,7 @@ public class AndroidLogger {
     private static File file;
     private static File directory;
     private static boolean isEnabled = true;
-    private static String appFolderName = "LogLibrary";
+    private static String appFolderName = BuildConfig.APPLICATION_ID;
     private static String filename = "log.dat";
     private static String zipFilename = "/logZip.zip";
 
@@ -119,16 +121,16 @@ public class AndroidLogger {
             BufferedInputStream origin = null;
             FileOutputStream dest = new FileOutputStream(zipFileName);
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-            byte data[] = new byte[BUFFER];
+            byte data[] = new byte[BUFFER_SIZE];
 
             FileInputStream fi = new FileInputStream(file);
-            origin = new BufferedInputStream(fi, BUFFER);
+            origin = new BufferedInputStream(fi, BUFFER_SIZE);
 
             ZipEntry entry = new ZipEntry(file.substring(file.lastIndexOf("/") + 1));
             out.putNextEntry(entry);
             int count;
 
-            while ((count = origin.read(data, 0, BUFFER)) != -1) {
+            while ((count = origin.read(data, 0, BUFFER_SIZE)) != -1) {
                 out.write(data, 0, count);
             }
             origin.close();
@@ -193,7 +195,7 @@ public class AndroidLogger {
     }
 
     //sending log by email
-    public static void sendLog(Context context, String emails[], String subject) {
+    public static void sendLog(Context context, String emails[]) {
         configDir();
         File file = null;
         if (isZipable) {
@@ -212,7 +214,8 @@ public class AndroidLogger {
             emailIntent.putExtra(Intent.EXTRA_STREAM, path);
         }
         // the mail subject
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        String appName = BuildConfig.APPLICATION_ID.substring(BuildConfig.APPLICATION_ID.lastIndexOf(".") + 1);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, appName + " " + BuildConfig.VERSION_NAME + " Log report");
         context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 

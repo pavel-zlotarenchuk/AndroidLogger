@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AndroidLogger.sendLog(getApplicationContext(), new String[]{"goldenhead777@gmail.com"}, "Logs");
+                AndroidLogger.sendLog(getApplicationContext(), new String[]{"goldenhead777@gmail.com"});
             }
         });
     }
