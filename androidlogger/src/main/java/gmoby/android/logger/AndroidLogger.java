@@ -2,6 +2,7 @@ package gmoby.android.logger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -214,7 +215,7 @@ public class AndroidLogger {
             emailIntent.putExtra(Intent.EXTRA_STREAM, path);
         }
         // the mail subject
-        String appName = BuildConfig.APPLICATION_ID.substring(BuildConfig.APPLICATION_ID.lastIndexOf(".") + 1);
+        String appName = context.getApplicationInfo().loadLabel(context.getPackageManager()).toString();
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, appName + " " + BuildConfig.VERSION_NAME + " Log report");
         context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
