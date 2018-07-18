@@ -17,15 +17,27 @@ allprojects {
 ###### Step 2. Add the dependency
 ```
 dependencies {
-	        compile 'com.github.viktord1985:AndroidLogger:v1.3'
+	        compile 'com.github.viktord1985:AndroidLogger:v1.4'
 	}
 ```
+###### Step 3. Usage
+
+```
+AndroidLogger.activateLogger(this, new String[]{"exampleemail@gmail.com"}, 5);
+```
+- Context need for permission
+- List of emails
+- Maximum log file size
+
 ###### Available functions:
-    AndroidLogger.d()           - log debug
-    AndroidLogger.e()           - log error
+    AndroidLogger.log() - for your tag
+    AndroidLogger.v() - for verbose
+    AndroidLogger.d() - for debug
+    AndroidLogger.i() - for info
+    AndroidLogger.w() - for warn
+    AndroidLogger.e() - for error
     AndroidLogger.sendLog()     - send log file on email
     AndroidLogger.clearLog()    - clear log file
-    AndroidLogger.zipLog()      - compress log file
     AndroidLogger.setFileName() - set log file name
     AndroidLogger.setMaxSize() - set log file max size
 See demo app in Example folder.
