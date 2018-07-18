@@ -22,18 +22,6 @@
         app:layout_constraintVertical_bias="0.098" />
 
     <Button
-        android:id="@+id/zipLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="ZIP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_button" />
-
-    <Button
         android:id="@+id/renameLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +31,7 @@
         android:text="RENAME"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zipLog" />
+        app:layout_constraintTop_toBottomOf="@+id/log_button" />
 
     <Button
         android:id="@+id/sendLog"

@@ -14,8 +14,6 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import gmoby.android.logger.AndroidLogger;
-
 public class MainActivity extends AppCompatActivity {
     String[] permissions = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     };
     int count = 0;
     Button button;
-    Button zipButton;
     Button renameButton;
     Button sendButton;
     final String TAG = "logTAG";
@@ -31,24 +28,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkPermissions();
+    //    checkPermissions();
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.log_button);
-        zipButton = findViewById(R.id.zipLog);
         renameButton = findViewById(R.id.renameLog);
         sendButton = findViewById(R.id.sendLog);
-        AndroidLogger.setClearOnFilling(false);
+        AndroidLogger.activateLogger(this, new String[]{"pavel.zlotarenchuk@gmail.com"}, 1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count++;
-                AndroidLogger.d(TAG, "sssssssss");
-            }
-        });
-        zipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AndroidLogger.zipLog();
+                AndroidLogger.log("tag", "message");
             }
         });
         renameButton.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AndroidLogger.sendLog(getApplicationContext(), new String[]{"goldenhead777@gmail.com"});
+                AndroidLogger.sendLog(MainActivity.this);
             }
         });
     }
@@ -93,5 +83,4 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
     }
-
 }
